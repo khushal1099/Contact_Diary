@@ -19,7 +19,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Contact Diary"),
+        title: Text(
+          "Contacts",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         actions: [
           IconButton(
@@ -38,7 +41,8 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Consumer<ContactProvider>(
         builder: (BuildContext context, contactprovider, child) {
-          return ListView.builder(
+          return contactprovider.contactList.isNotEmpty ?
+          ListView.builder(
             itemCount: contactprovider.contactList.length,
             itemBuilder: (context, index) {
               var contactModel = contactprovider.contactList[index];
@@ -47,11 +51,16 @@ class _HomePageState extends State<HomePage> {
                   ListTile(
                     title: Text(contactModel.name ?? ""),
                     leading: CircleAvatar(
-                      backgroundColor: Colors.blue,
                       maxRadius: 40,
                       backgroundImage: contactModel.xFile != null
                           ? FileImage(
                               File(contactModel.xFile!.path ?? ""),
+                            )
+                          : null,
+                      child: contactModel.xFile == null
+                          ? Icon(
+                              Icons.person, // Replace with your desired icon
+                              size: 48,
                             )
                           : null,
                     ),
@@ -137,6 +146,19 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             },
+          )
+              :
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.person,
+                  size: 200,
+                ),
+                Text("Add Contact",style: TextStyle(fontSize: 40),)
+              ],
+            ),
           );
         },
       ),

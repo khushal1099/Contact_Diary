@@ -91,13 +91,19 @@ class _ContactSaveState extends State<ContactSave> {
                       Stack(
                         children: [
                           CircleAvatar(
-                              // backgroundColor: Colors.blue,
-                              maxRadius: 80,
-                              backgroundImage: contactprovider.xFile != null
-                                  ? FileImage(
-                                      File(contactprovider.xFile?.path ?? ""),
-                                    )
-                                  : null),
+                            maxRadius: 80,
+                            backgroundImage: contactprovider.xFile != null
+                                ? FileImage(
+                                    File(contactprovider.xFile?.path ?? ""),
+                                  )
+                                : null,
+                            child: contactprovider.xFile == null
+                                ? Icon(
+                                    Icons.person,
+                                    size: 60,
+                                  )
+                                : null,
+                          ),
                           Positioned(
                             right: 0,
                             bottom: 0,
@@ -155,7 +161,10 @@ class _ContactSaveState extends State<ContactSave> {
                         },
                         steps: [
                           Step(
-                            title: Text("Step 1",style: TextStyle(color: Colors.black),),
+                            title: Text(
+                              "Step 1",
+                              style: TextStyle(color: Colors.black),
+                            ),
                             content: TextFormField(
                               controller: contactprovider.nameController,
                               style: TextStyle(color: Colors.black),
@@ -178,7 +187,10 @@ class _ContactSaveState extends State<ContactSave> {
                                     : StepState.editing,
                           ),
                           Step(
-                            title: Text("Step 2",style: TextStyle(color: Colors.black),),
+                            title: Text(
+                              "Step 2",
+                              style: TextStyle(color: Colors.black),
+                            ),
                             content: TextFormField(
                               controller: contactprovider.contactController,
                               style: TextStyle(color: Colors.black),
