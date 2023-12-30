@@ -1,6 +1,7 @@
 import 'package:contact_diary/provider/contact_provider.dart';
 import 'package:contact_diary/provider/theme_provider.dart';
 import 'package:contact_diary/view/home_page.dart';
+import 'package:contact_diary/view/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           builder: (context, provider, child) {
             return MaterialApp(
               debugShowCheckedModeBanner: false,
-              home: HomePage(),
+              home: SplashScreen(),
               theme: ThemeData.light(),
               darkTheme: ThemeData.dark(),
               themeMode: provider.thememode,
